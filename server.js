@@ -36,7 +36,9 @@ app.use(function (err, req, res, next) {
 });
 
 // start server
-var port = 4000;
+// set the port of our application
+// process.env.PORT lets the port be set by Heroku
+var port = process.env.PORT || 4000;
 var server = app.listen(port, function () {
     console.log('Server listening on port ' + port);
 });

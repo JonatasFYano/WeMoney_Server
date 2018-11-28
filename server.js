@@ -36,7 +36,7 @@ app.use(function (err, req, res, next) {
 });
 
 // start server
-var port = process.env.NODE_ENV === 'production' ? 80 : 4000;
+var port = 4000;
 var server = app.listen(port, function () {
     console.log('Server listening on port ' + port);
 });

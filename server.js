@@ -29,7 +29,7 @@ app.use('/users', require('./controllers/users.controller'));
 // error handler
 app.use(function (err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
-        res.status(401).send('Invalid Token');
+        res.status(401).send('EndPoint para MongoDB! Nada para ver aqui');
     } else {
         throw err;
     }

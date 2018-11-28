@@ -21,7 +21,7 @@ stages:
 jobs:
   include:
   - stage: Tests
-    script: "mocha server/test/teste.js"
+    script: "mocha test/teste.js"
 
   - stage: Deploy to Production
     script: skip

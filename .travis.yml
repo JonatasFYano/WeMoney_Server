@@ -1,0 +1,44 @@
+language: node_js
+node_js:
+ - "node"
+
+install:
+  - npm install
+  - npm install mocha --save
+  - npm install chai --save
+
+addons:
+  sonarcloud:
+    organization: jullyannem-github
+    token:
+      secure: "$SONARCLOUD_TOKEN"
+
+stages:
+- name: Tests
+- name: Deploy to Production
+- name: Test Production
+
+jobs:
+  include:
+  - stage: Tests
+    script: "mocha test/teste.js"
+
+  - stage: Deploy to Production
+    script: skip
+    deploy:
+      provider: heroku
+      api_key: 
+        secure: $HEROKU_API_KEY
+      app: wemoney-backend
+      on: 
+        branch: master
+
+  - stage: Test Production
+    script: sonar-scanner
+
+notifications:
+  email:
+    recipients:
+    - mail@gmail.com
+    on_success: change
+    on_failure: always
